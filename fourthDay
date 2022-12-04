@@ -1,0 +1,72 @@
+class DeleteNode {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
+
+class RemoveNode {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode runner1 = head;
+        ListNode runner2 = head;
+        
+        //move runner1 n+1 elements into the linkedlist
+        for(int i = 0; i < n; i++){
+            if(runner1 == null) break;
+            runner1= runner1.next;
+        }
+        
+        if(runner1 == null) return head.next;
+        
+        //iterate until runner1 is at the end of the linked list
+        //at that point, runner2 will be at the node before the nth element
+        while(runner1.next != null){
+            runner1 = runner1.next;
+            runner2 = runner2.next;
+        }
+        runner2.next = runner2.next.next;
+        
+        return head;
+    }
+}
+
+class ReverseLinkedList {
+    public ListNode reverseList(ListNode head) {
+        ListNode curr = null;
+        while (head != null){
+            ListNode next = head.next;
+            head.next = curr;
+            curr = head;
+            head = next;
+        }
+        return curr;
+    }
+}
+
+class Palindrome {
+    public boolean isPalindrome(ListNode head) {
+        Stack<Integer> vals = new Stack<Integer>();
+        ListNode runner1 = head;
+        ListNode runner2 = head;
+        
+        //add half of the linked list elements to the stack
+        while(runner2 != null && runner2.next != null){
+            vals.add(runner1.val);
+            runner1 = runner1.next;
+            runner2 = runner2.next.next;
+        }
+        
+        //check whether the linked list contains an odd number of elements
+        //if yes, skip the middle element
+        if(runner2 != null)
+            runner1 = runner1.next;
+        
+        //check if the remaining half of the linked list matches the first half
+        while(runner1 != null){
+            if(runner1.val != vals.pop().intValue())
+                return false;
+            runner1 = runner1.next;
+        }
+        return true;
+    }
+}
