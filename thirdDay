@@ -1,0 +1,38 @@
+class RemoveDuplicates {
+    public int removeDuplicates(int[] nums) {
+        int currentPosition = 1;
+        for(int i = 1; i < nums.length;i++){
+            if(nums[i] != nums[i-1]){
+                nums[currentPosition] = nums[i];
+                currentPosition ++;
+            } 
+        }
+        return currentPosition;
+    }
+}
+
+class ContainsDuplicates {
+    public boolean containsDuplicate(int[] nums) {
+        Set <Integer> numbersPresent = new HashSet<Integer>();
+        for(int i = 0; i < nums.length; i++){
+            if(numbersPresent.contains(nums[i])) return true;
+            numbersPresent.add(nums[i]);
+        }
+        return false;
+    }
+}
+
+class SingleNumber {
+    public int singleNumber(int[] nums) {
+        
+        Set<Integer> numbers = new HashSet<Integer>();
+        for(int i = 0; i < nums.length; i++){
+            if(numbers.contains(nums[i])){
+                numbers.remove(nums[i]);
+            } 
+            else numbers.add(nums[i]);
+        }
+        
+        return numbers.iterator().next();
+    }
+}
