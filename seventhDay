@@ -1,0 +1,45 @@
+class MergeSortedArray {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int len = nums1.length - 1, i = 0;
+        n--; m--;
+        while(i <= n){
+            if(m < 0){
+                //copy the rest of array nums2 into nums1
+                nums1[len] = nums2[n];
+                len--; n--;
+            }
+            //insert the largest number into nums1 at current position len
+            else if(nums1[m] > nums2[n]){
+                nums1[len] = nums1[m];
+                m--;len--;
+            }
+            else{
+                nums1[len] = nums2[n];
+                n--;len--;
+            }
+        }
+        
+        //in case the first array wasn't fully iterated over.
+        if(m > 0){
+            while(m >= 0){
+                nums1[len] = nums1[m];
+                len--;m--;
+            }
+        }
+        
+    } 
+}
+
+class FizzBuzz {
+    public List<String> fizzBuzz(int n) {
+        ArrayList<String> fizzes = new ArrayList<String>();
+        for(int i = 1; i <= n; i++){
+            String res = "";
+            res += (i % 3 == 0)?"Fizz":"";
+            res += (i % 5 == 0)?"Buzz":"";
+            if (res.equals("")) res = String.valueOf(i);
+            fizzes.add(res);
+        }
+        return fizzes;
+    }
+}
