@@ -1,0 +1,57 @@
+import java.util.*;
+import java.io.*;
+
+class Solution{
+	public static void main(String []argh)
+	{
+		Scanner in = new Scanner(System.in);
+        HashMap<String, Integer> phoneBook = new HashMap<String, Integer>();
+		int n=in.nextInt();
+		in.nextLine();
+		for(int i=0;i<n;i++)
+		{
+			String name=in.nextLine();
+			int phone=in.nextInt();
+			in.nextLine();
+            phoneBook.put(name, phone);
+		}
+		while(in.hasNext())
+		{
+			String s=in.nextLine();
+            Integer phoneNum = phoneBook.get(s);
+            if(phoneNum == null)
+                System.out.println("Not found");
+            else
+                System.out.println(s+"="+phoneNum);
+		}
+	}
+}
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+ public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int t = s.nextInt();
+        String [] pair_left = new String[t];
+        String [] pair_right = new String[t];
+        
+        for (int i = 0; i < t; i++) {
+            pair_left[i] = s.next();
+            pair_right[i] = s.next();
+        }
+        HashSet<String> pairs = new HashSet<>();
+        for(int i = 0; i < t; i++){
+            if(!pairs.contains(pair_left[i]+" "+pair_right[i])){
+                pairs.add(pair_left[i]+" "+pair_right[i]);
+            }
+            System.out.println(pairs.size());
+        }
+
+    }
+}
