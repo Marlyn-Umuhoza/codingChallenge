@@ -1,0 +1,101 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        BigInteger a = new BigInteger(scan.nextLine());
+        BigInteger b = new BigInteger(scan.nextLine());
+        System.out.println(a.add(b));
+        System.out.println(a.multiply(b));
+        scan.close();
+    }
+}
+
+import java.math.BigDecimal;
+import java.util.*;
+class Solution{
+
+    public static void main(String []args){
+        //Input
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        String []s=new String[n+2];
+        for(int i=0;i<n;i++){
+            s[i]=sc.next();
+        }
+      	sc.close();
+
+        Arrays.sort(s,0,n, Collections.reverseOrder(new Comparator<String>() {
+    @Override
+    public int compare(String a1, String a2) {
+        //convert to big decimal inside comparator
+        //so permanent string values are never changed
+        //aka you only use the BigDecimal values to 
+        //compare the strings!
+        BigDecimal a = new BigDecimal(a1);
+        BigDecimal b = new BigDecimal(a2);
+        return a.compareTo(b);
+    }
+}));
+
+//Output
+        for(int i=0;i<n;i++)
+        {
+            System.out.println(s[i]);
+        }
+    }
+
+}
+
+
+
+import java.util.*;
+
+class Checker implements Comparator<Player>{
+    
+    //Returns a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater than the second.
+    @Override
+    public int compare(Player a, Player b){
+       if (a.score > b.score)
+            return -1;
+        else if(a.score < b.score)
+            return 1;
+        else
+            return a.name.compareTo(b.name); 
+    }
+}
+class Player{
+    String name;
+    int score;
+    
+    Player(String name, int score){
+        this.name = name;
+        this.score = score;
+    }
+}
+
+class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+
+        Player[] player = new Player[n];
+        Checker checker = new Checker();
+        
+        for(int i = 0; i < n; i++){
+            player[i] = new Player(scan.next(), scan.nextInt());
+        }
+        scan.close();
+     
+        Arrays.sort(player, checker);
+        for(int i = 0; i < player.length; i++){
+            System.out.printf("%s %s\n", player[i].name, player[i].score);
+        }
+    }
+}
