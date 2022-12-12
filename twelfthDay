@@ -1,0 +1,89 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+import java.util.Calendar;
+
+class Result {
+
+    /*
+     * Complete the 'findDay' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts following parameters:
+     *  1. INTEGER month
+     *  2. INTEGER day
+     *  3. INTEGER year
+     */
+
+    public static String findDay(int month, int date, int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month-1, date);
+        DateFormat day = new SimpleDateFormat("EEEE");
+        return day.format(cal.getTime()).toUpperCase();
+    }
+
+}
+
+public class DateNTime {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int month = Integer.parseInt(firstMultipleInput[0]);
+
+        int day = Integer.parseInt(firstMultipleInput[1]);
+
+        int year = Integer.parseInt(firstMultipleInput[2]);
+
+        String res = Result.findDay(month, day, year);
+
+        bufferedWriter.write(res);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+import java.util.*;
+import java.text.*;
+
+-------------------------------------------------------------------------
+public class CurrencyFormatter {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+        
+        System.out.println("US: " + NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(payment));
+        System.out.println("India: " + NumberFormat.getCurrencyInstance(new Locale("en", "IN")).format(payment));
+        System.out.println("China: " + NumberFormat.getCurrencyInstance(new Locale("zh", "CN")).format(payment));
+        System.out.println("France: " + NumberFormat.getCurrencyInstance(new Locale("fr", "FR")).format(payment));
+    }
+import java.io.*;
+import java.util.*;
+
+-----------------------------------------------------------------------
+public class StringTokens {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        if(!scan.hasNext()) System.out.println("0");
+        else{
+            String s = scan.nextLine();
+            String[] tokens = s.trim().split("[ !,?._'@]+");
+            System.out.println(tokens.length);
+            for(String token: tokens){
+                System.out.println(token);
+            }
+        }
+        scan.close();
+    }
+}
+}
