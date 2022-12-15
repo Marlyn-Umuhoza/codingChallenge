@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = Integer.parseInt(scan.nextLine());
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        String[] nums = scan.nextLine().split(" ");
+        for(int i = 0; i < n; i++){
+            list.add(Integer.parseInt(nums[i]));
+        }
+        int q = Integer.parseInt(scan.nextLine());
+        while(q > 0){
+            String command = scan.nextLine();
+            if(command.equals("Insert")){
+                String[] s = scan.nextLine().split(" ");
+                Integer x = Integer.parseInt(s[0]), y = Integer.parseInt(s[1]);
+                list.add(x, y);
+            }
+            else if(command.equals("Delete")){
+                int a = scan.nextInt();
+                list.remove(a);
+            }
+            q--;
+        }
+        scan.close();
+        
+        //print new list
+        Iterator it = list.iterator();
+        String newList = "";
+        while(it.hasNext()){
+            newList += it.next().toString()+ " ";
+        }
+        System.out.println(newList);
+    }
+}
+
