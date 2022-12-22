@@ -1,0 +1,121 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.lang.reflect.*;
+
+
+class Singleton{
+    String str;
+    static Singleton single = new Singleton();
+    private Singleton(){}
+    
+    public static Singleton getSingleInstance(){
+        return single;
+    }
+}
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+//Complete the classes below
+class Flower {
+    public String whatsYourName(){
+        return "I have many names and types";
+    }
+}
+
+class Jasmine extends Flower {
+    @Override
+    public String whatsYourName(){
+        return "Jasmine";
+    }
+}
+
+class Lily extends Flower {
+    @Override
+    public String whatsYourName(){
+        return "Lily";
+    }
+}
+
+class Region {
+    public Flower yourNationalFlower(){
+        return new Flower();
+    }
+}
+
+class WestBengal extends Region {
+    @Override
+    public Flower yourNationalFlower(){
+        return new Jasmine();
+    }
+}
+
+class AndhraPradesh extends Region {
+    @Override
+    public Flower yourNationalFlower(){
+        return new Lily();
+    }
+}
+
+
+public class Solution {
+  public static void main(String[] args) throws IOException {
+      BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+      String s = reader.readLine().trim();
+      Region region = null;
+      switch (s) {
+        case "WestBengal":
+          region = new WestBengal();
+          break;
+        case "AndhraPradesh":
+          region = new AndhraPradesh();
+          break;
+      }
+      Flower flower = region.yourNationalFlower();
+      System.out.println(flower.whatsYourName());
+    }
+}
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            list.add(scan.nextInt());
+        }
+        int q = scan.nextInt();
+        for(int i=0; i<q; i++){
+            String command = scan.next();
+            if(command.equals("Insert")){
+                int x = scan.nextInt(), y = scan.nextInt();
+                list.add(x,y);
+            }
+            else if(command.equals("Delete")){
+                int a = scan.nextInt();
+                list.remove(a);
+            }
+        }
+        scan.close();
+        
+        //print new list
+        Iterator it = list.iterator();
+        String newList = "";
+        while(it.hasNext()){
+            newList += it.next().toString()+ " ";
+        }
+        System.out.println(newList);
+    }
+}
+
