@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.security.*;
+
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        try{
+            //using MessageDigest to compute MD5 hash
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] strBytes = str.getBytes();
+            byte[] hashedBytes = md.digest(strBytes);
+            BigInteger no = new BigInteger(1, hashedBytes);
+            String hashedString = no.toString(16);
+            System.out.println(hashedString);
+        }catch(Exception e){
+            System.out.print(e);
+        }
+        scan.close();
+    }
+}
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.security.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String word = scan.next();
+        try{
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            BigInteger no = new BigInteger(1, md.digest(word.getBytes()));
+            String hash = no.toString(16);
+             while (hash.length() < 64){
+                hash = "0" + hash;
+            }
+            System.out.println(hash);
+        
+        }catch(NoSuchAlgorithmException e){
+            throw new RuntimeException(e);   
+        }
+        scan.close();
+    }
+}
+
